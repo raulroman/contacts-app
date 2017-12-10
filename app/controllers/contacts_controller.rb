@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
 
   def show
     the_id = params['id']
-    single_contact = Contact.find_by(id: the_id)
+    contact = Contact.find_by(id: the_id)
     render json: single_contact.as_json
   end
 
@@ -20,14 +20,13 @@ class ContactsController < ApplicationController
   end
 
   def create
-    contacts = Contact.new(
+    contact = Contact.new(
     first_name: params['first_name'],
     last_name: params['last_name'],
     email: params['email'],
     phone_number: params['phone_number']
     )
-
-
-      
+    render json: contact.as_json
   end
+  
 end
