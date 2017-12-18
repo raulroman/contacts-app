@@ -1,24 +1,41 @@
 class Contact < ApplicationRecord
+  belongs_to :user
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, uniqueness: true
+  # validates :email,
+
   def as_json
     {
     first_name: first_name,
     last_name: last_name,
     full_name: full_name,
     email: email,
-    phone_number: phone_number,
+    japan_phone_number: japan_phone_number,
     updated_at: friendly_updated_at
     }
   end
 
   def friendly_updated_at
     updated_at.strftime("%A, %b %d")
-    
   end
 
   def full_name
     full_name = "#{first_name} #{last_name}"
   end
+
+  def japan_phone_number
+    "+86 #{phone_number}"
+  end
 end
+
+# ● An email
+# ● There must be a first name
+# ● There must be a last name
+# ● The email must be unique
+# ● Bonus: The email must be in a proper format.
+
 #     For your contacts app:
 # • Add the “friendly” updated at attribute to your contact json output.
 

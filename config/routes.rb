@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get '/contacts' => 'contacts#index' 
+  namespace :v1 do
+    post 'user_token' => 'user_token#create'
 
-  get '/contacts/:id' => 'contacts#show'
+    get '/contacts/' => 'contacts#index' 
+    get '/contacts/:id' => 'contacts#show'
+    post '/contacts/' => 'contacts#create'
+    patch '/contacts/:id' => 'contacts#update'
+    delete '/contacts/:id' => 'contacts#destroy'
 
-  post '/contacts/' => 'contacts#create'
+    post '/users/' => 'users#create'
 
-  # patch '/contacts/:id' => 'contacts#update'
-
-  # delete '/contacts/:id' => 'contacts#destroy'
-
+  end
 end
